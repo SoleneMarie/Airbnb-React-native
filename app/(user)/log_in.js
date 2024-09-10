@@ -1,14 +1,18 @@
 import { Link, router } from "expo-router";
-import { View, Text, StyleSheet, Image } from "react-native";
+import { useState, useEffect } from "react";
+import { View, Text, StyleSheet, Image, TextInput } from "react-native";
+
 const Login = () => {
-  /* ---------------------------------------fonction actionnée onPress ---------------------------------------- */
+  const [email, setEmail] = useState("");
+  const [mdp, setMdp] = useState("");
+
   const loginFunc = async () => {
     try {
       await router.post(
         "https://lereacteur-bootcamp-api.herokuapp.com/api/airbnb/user/log_in",
         (req, res) => {
           {
-            (email = "jhde"), (password = "dhhfdf");
+            (email = { email }), (password = { mdp });
           }
           res.status(200);
         }
@@ -17,6 +21,7 @@ const Login = () => {
       console.log(error.message);
     }
   };
+  /* ---------------------------------------fonction actionnée onPress ---------------------------------------- */
 
   return (
     <>
@@ -26,8 +31,26 @@ const Login = () => {
         >
           <View style={{ paddingBottom: 80 }}>
             <Image
-              source={require(".../assets/pictures/Airbnb-logo.jpg")}
+              source={require("../../assets/pictures/Airbnb-logo.jpg")}
               style={{ height: 200, width: 200 }}
+            />
+          </View>
+          <View>
+            <TextInput
+              style={{}}
+              placeholder="Email"
+              value={email}
+              onChangeText={(item) => {
+                setEmail(item);
+              }}
+            />
+            <TextInput
+              style={{}}
+              placeholder="Password"
+              value={password}
+              onChangeText={(item) => {
+                setMdp(item);
+              }}
             />
           </View>
         </View>

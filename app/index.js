@@ -37,7 +37,7 @@ export default function HomePage() {
               Sign up
             </Text>
           </Link>
-          <Link href="/sign-up">
+          <Link href="./log_in">
             <Text
               style={{ fontSize: 26, fontWeight: "bold", color: "#717171" }}
             >
