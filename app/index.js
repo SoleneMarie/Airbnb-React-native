@@ -30,14 +30,14 @@ export default function HomePage() {
             width: "60%",
           }}
         >
-          <Link href="/log_in">
+          <Link href="/sign_up">
             <Text
               style={{ fontSize: 26, fontWeight: "bold", color: "#717171" }}
             >
               Sign up
             </Text>
           </Link>
-          <Link href="./log_in">
+          <Link href="/log_in">
             <Text
               style={{ fontSize: 26, fontWeight: "bold", color: "#717171" }}
             >

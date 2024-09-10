@@ -1,8 +1,9 @@
 import { Link, router } from "expo-router";
 import { useState, useEffect } from "react";
-import { useNavigation } from "expo-router";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import axios from "axios";
+import { Ionicons } from "@expo/vector-icons";
+import Feather from "@expo/vector-icons/Feather";
 
 import {
   View,
@@ -11,24 +12,56 @@ import {
   Image,
   TextInput,
   TouchableOpacity,
+  ActivityIndicator,
 } from "react-native";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [mdp, setMdp] = useState("");
+  const [clearMdp, setClearMdp] = useState(false);
+  const [errorMail, setErrorMail] = useState(false);
+  const [errorPass, setErrorPass] = useState(false);
+  const [empty, setEmpty] = useState(false);
+  const [loading, setLoading] = useState(false);
 
+  const clearFunc = () => {
+    setClearMdp(true);
+  };
+
+  const hideFunc = () => {
+    setClearMdp(false);
+  };
+
+  const backToSignup = () => {
+    router.navigate("./sign_up");
+  };
   const loginFunc = async () => {
+    if (!email || !mdp) {
+      setEmpty(true);
+      setErrorName(false);
+      setErrorPass(false);
+    }
     try {
-      const Form = new FormData();
-      Form.append("email", email);
-      Form.append("password", mdp);
-      await axios.post(
-        "https://lereacteur-bootcamp-api.herokuapp.com/api/airbnb/user/log_in",
-        Form
-      );
-      res.status(200);
+      setLoading(true),
+        await axios.post(
+          "https://lereacteur-bootcamp-api.herokuapp.com/api/airbnb/user/log_in",
+          {
+            email: email.toLowerCase(),
+            password: mdp.toLowerCase(),
+          }
+        );
+      console.log("yeah");
+      setLoading(false);
+      router.navigate("/");
     } catch (error) {
-      console.log(error);
+      console.log(error.response.data);
+      setLoading(false);
+      if (error.response.data.error === "This account doesn't exist !") {
+        setErrorMail(true);
+      }
+      if (error.response.data.error === "Unauthorized") {
+        setErrorPass(true);
+      }
     }
   };
   /* ---------------------------------------fonction actionnée onPress ---------------------------------------- */
@@ -75,20 +108,45 @@ const Login = () => {
                   setEmail(item);
                 }}
               />
-              <TextInput
-                style={{
-                  height: 40,
-                  borderBottomColor: "#FFBAC0",
-                  borderBottomWidth: 2,
-                  marginBottom: 34,
-                  fontSize: 20,
-                }}
-                placeholder="password"
-                secureTextEntry={true}
-                onChangeText={(item) => {
-                  setMdp(item);
-                }}
-              />
+              <View style={{ position: "relative" }}>
+                <TextInput
+                  style={{
+                    height: 40,
+                    borderBottomColor: "#FFBAC0",
+                    borderBottomWidth: 2,
+                    marginBottom: 34,
+                    fontSize: 20,
+                  }}
+                  placeholder="password"
+                  secureTextEntry={clearMdp ? true : false}
+                  onChangeText={(item) => {
+                    setMdp(item);
+                  }}
+                />
+                {clearMdp ? (
+                  <TouchableOpacity
+                    style={{
+                      position: "absolute",
+                      right: 10,
+                      bottom: 40,
+                    }}
+                    onPress={hideFunc}
+                  >
+                    <Feather name="eye-off" size={24} color="black" />
+                  </TouchableOpacity>
+                ) : (
+                  <TouchableOpacity
+                    style={{
+                      position: "absolute",
+                      right: 10,
+                      bottom: 40,
+                    }}
+                    onPress={clearFunc}
+                  >
+                    <Feather name="eye" size={24} color="black" />
+                  </TouchableOpacity>
+                )}
+              </View>
             </KeyboardAwareScrollView>
           </View>
           <TouchableOpacity onPress={loginFunc}>
@@ -104,13 +162,38 @@ const Login = () => {
                 marginBottom: 20,
               }}
             >
-              <Text
-                style={{ fontSize: 24, color: "#717171", fontWeight: "bold" }}
-              >
-                Log in
-              </Text>
+              {loading ? (
+                <ActivityIndicator />
+              ) : (
+                <Text
+                  style={{ fontSize: 24, color: "#717171", fontWeight: "bold" }}
+                >
+                  Log in
+                </Text>
+              )}
             </View>
           </TouchableOpacity>
+          {empty && (
+            <View style={{ height: 20, width: "100%", alignItems: "center" }}>
+              <Text style={{ color: "red", fontSize: 14 }}>
+                Warning : you must fill all fields
+              </Text>
+            </View>
+          )}
+          {errorMail && (
+            <View style={{ height: 20, width: "100%", alignItems: "center" }}>
+              <Text style={{ color: "red", fontSize: 14 }}>
+                Warning : this account doesn't exist
+              </Text>
+            </View>
+          )}
+          {errorPass && (
+            <View style={{ height: 20, width: "100%", alignItems: "center" }}>
+              <Text style={{ color: "red", fontSize: 14 }}>
+                Warning : wrong password
+              </Text>
+            </View>
+          )}
           <View
             style={{
               height: 40,
@@ -130,7 +213,7 @@ const Login = () => {
             >
               No account?
             </Text>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={backToSignup}>
               <Text
                 style={{
                   fontSize: 18,
