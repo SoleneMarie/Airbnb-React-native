@@ -1,6 +1,8 @@
 import { Link, router } from "expo-router";
 import { useState, useEffect } from "react";
+import { useNavigation } from "expo-router";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import axios from "axios";
 
 import {
   View,
@@ -17,17 +19,16 @@ const Login = () => {
 
   const loginFunc = async () => {
     try {
-      await router.post(
+      const Form = new FormData();
+      Form.append("email", email);
+      Form.append("password", mdp);
+      await axios.post(
         "https://lereacteur-bootcamp-api.herokuapp.com/api/airbnb/user/log_in",
-        (req, res) => {
-          {
-            (email = { email }), (password = { mdp });
-          }
-          res.status(200);
-        }
+        Form
       );
+      res.status(200);
     } catch (error) {
-      console.log(error.message);
+      console.log(error);
     }
   };
   /* ---------------------------------------fonction actionnée onPress ---------------------------------------- */
@@ -90,7 +91,7 @@ const Login = () => {
               />
             </KeyboardAwareScrollView>
           </View>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={loginFunc}>
             <View
               style={{
                 height: 70,
