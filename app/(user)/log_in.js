@@ -1,6 +1,15 @@
 import { Link, router } from "expo-router";
 import { useState, useEffect } from "react";
-import { View, Text, StyleSheet, Image, TextInput } from "react-native";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TextInput,
+  TouchableOpacity,
+} from "react-native";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -27,31 +36,111 @@ const Login = () => {
     <>
       <>
         <View
-          style={{ alignItems: "center", justifyContent: "center", flex: 1 }}
+          style={{
+            alignItems: "center",
+            justifyContent: "center",
+            flex: 1,
+          }}
         >
-          <View style={{ paddingBottom: 80 }}>
+          <View
+            style={{
+              paddingBottom: 80,
+              alignItems: "center",
+            }}
+          >
             <Image
               source={require("../../assets/pictures/Airbnb-logo.jpg")}
-              style={{ height: 200, width: 200 }}
+              style={{ height: 140, width: 130, marginBottom: 30 }}
             />
+            <Text
+              style={{ fontSize: 30, fontWeight: "bold", color: "#717171" }}
+            >
+              Log in
+            </Text>
           </View>
-          <View>
-            <TextInput
-              style={{}}
-              placeholder="Email"
-              value={email}
-              onChangeText={(item) => {
-                setEmail(item);
+          <View style={{ width: "80%", paddingBottom: 100 }}>
+            <KeyboardAwareScrollView>
+              <TextInput
+                style={{
+                  height: 40,
+                  borderBottomColor: "#FFBAC0",
+                  borderBottomWidth: 2,
+                  marginBottom: 34,
+                  fontSize: 20,
+                }}
+                placeholder="email"
+                keyboardType="email-address"
+                onChangeText={(item) => {
+                  setEmail(item);
+                }}
+              />
+              <TextInput
+                style={{
+                  height: 40,
+                  borderBottomColor: "#FFBAC0",
+                  borderBottomWidth: 2,
+                  marginBottom: 34,
+                  fontSize: 20,
+                }}
+                placeholder="password"
+                secureTextEntry={true}
+                onChangeText={(item) => {
+                  setMdp(item);
+                }}
+              />
+            </KeyboardAwareScrollView>
+          </View>
+          <TouchableOpacity>
+            <View
+              style={{
+                height: 70,
+                width: 240,
+                borderColor: "#EB5A62",
+                borderWidth: 4,
+                borderRadius: 40,
+                justifyContent: "center",
+                alignItems: "center",
+                marginBottom: 20,
               }}
-            />
-            <TextInput
-              style={{}}
-              placeholder="Password"
-              value={password}
-              onChangeText={(item) => {
-                setMdp(item);
+            >
+              <Text
+                style={{ fontSize: 24, color: "#717171", fontWeight: "bold" }}
+              >
+                Log in
+              </Text>
+            </View>
+          </TouchableOpacity>
+          <View
+            style={{
+              height: 40,
+              width: "100%",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Text
+              style={{
+                fontSize: 18,
+                color: "#717171",
+                textAlign: "center",
+                marginRight: 10,
               }}
-            />
+            >
+              No account?
+            </Text>
+            <TouchableOpacity>
+              <Text
+                style={{
+                  fontSize: 18,
+                  color: "#717171",
+                  textAlign: "center",
+                  fontWeight: "bold",
+                }}
+              >
+                Register
+              </Text>
+            </TouchableOpacity>
           </View>
         </View>
       </>
