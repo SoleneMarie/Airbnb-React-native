@@ -5,7 +5,6 @@ import axios from "axios";
 import { Ionicons } from "@expo/vector-icons";
 import Feather from "@expo/vector-icons/Feather";
 import Constants from "expo-constants";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 import {
   View,
@@ -15,6 +14,7 @@ import {
   TextInput,
   TouchableOpacity,
   ScrollView,
+  SafeAreaView,
   ActivityIndicator,
   Platform,
 } from "react-native";
