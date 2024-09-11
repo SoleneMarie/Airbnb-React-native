@@ -33,7 +33,7 @@ const Login = () => {
   };
 
   const backToSignup = () => {
-    router.navigate("./sign_up");
+    router.navigate("/sign_up");
   };
   const loginFunc = async () => {
     if (!email || !mdp) {
@@ -52,7 +52,7 @@ const Login = () => {
         );
       console.log("yeah");
       setLoading(false);
-      router.navigate("/");
+      /* router.navigate("/");*/
     } catch (error) {
       console.log(error.response.data);
       setLoading(false);
@@ -83,7 +83,7 @@ const Login = () => {
             }}
           >
             <Image
-              source={require("../../assets/pictures/Airbnb-logo.jpg")}
+              source={require("./../../assets/pictures/Airbnb-logo.png")}
               style={{ height: 140, width: 130, marginBottom: 30 }}
             />
             <Text
@@ -118,7 +118,7 @@ const Login = () => {
                     fontSize: 20,
                   }}
                   placeholder="password"
-                  secureTextEntry={clearMdp ? true : false}
+                  secureTextEntry={clearMdp ? false : true}
                   onChangeText={(item) => {
                     setMdp(item);
                   }}
@@ -132,7 +132,7 @@ const Login = () => {
                     }}
                     onPress={hideFunc}
                   >
-                    <Feather name="eye-off" size={24} color="black" />
+                    <Feather name="eye" size={24} color="black" />
                   </TouchableOpacity>
                 ) : (
                   <TouchableOpacity
@@ -143,7 +143,7 @@ const Login = () => {
                     }}
                     onPress={clearFunc}
                   >
-                    <Feather name="eye" size={24} color="black" />
+                    <Feather name="eye-off" size={24} color="black" />
                   </TouchableOpacity>
                 )}
               </View>

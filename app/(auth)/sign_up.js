@@ -38,7 +38,7 @@ const Signup = () => {
     setClearMdp(false);
   };
   const backToLogin = () => {
-    router.navigate("./log_in");
+    router.navigate("/index.js");
   };
 
   const signFunc = async () => {
@@ -70,7 +70,7 @@ const Signup = () => {
         );
         console.log("done!");
         setLoading(false);
-        router.navigate("/");
+        /* router.navigate("/");*/
       } catch (error) {
         setErrorResponse(error.response.data.error);
         setLoading(false);
@@ -92,7 +92,8 @@ const Signup = () => {
             alignItems: "center",
             justifyContent: "center",
             flex: 1,
-            paddingBottom: 40,
+            paddingBottom: 10,
+            paddingTop: 20,
           }}
         >
           <ScrollView
@@ -107,7 +108,7 @@ const Signup = () => {
               }}
             >
               <Image
-                source={require("../../assets/pictures/Airbnb-logo.jpg")}
+                source={require("./../../assets/pictures/Airbnb-logo.png")}
                 style={{
                   height: 140,
                   width: 130,
@@ -173,6 +174,7 @@ const Signup = () => {
                     }}
                     placeholder="Describe yourself in a few words..."
                     multiline={true}
+                    maxLength={300}
                     onChangeText={(item) => {
                       setDescribe(item);
                     }}
@@ -188,7 +190,7 @@ const Signup = () => {
                       fontSize: 18,
                       width: 340,
                     }}
-                    secureTextEntry={clearMdp ? true : false}
+                    secureTextEntry={clearMdp ? false : true}
                     placeholder="password"
                     onChangeText={(item) => {
                       setPassword(item);
@@ -203,7 +205,7 @@ const Signup = () => {
                       }}
                       onPress={hideFunc}
                     >
-                      <Feather name="eye-off" size={24} color="black" />
+                      <Feather name="eye" size={24} color="black" />
                     </TouchableOpacity>
                   ) : (
                     <TouchableOpacity
@@ -214,7 +216,7 @@ const Signup = () => {
                       }}
                       onPress={clearFunc}
                     >
-                      <Feather name="eye" size={24} color="black" />
+                      <Feather name="eye-off" size={24} color="black" />
                     </TouchableOpacity>
                   )}
                 </View>
@@ -227,7 +229,7 @@ const Signup = () => {
                       marginBottom: 34,
                       fontSize: 18,
                     }}
-                    secureTextEntry={clearMdp ? true : false}
+                    secureTextEntry={clearMdp ? false : true}
                     placeholder="confirm password"
                     onChangeText={(item) => {
                       setConfirm(item);
@@ -242,7 +244,7 @@ const Signup = () => {
                       }}
                       onPress={hideFunc}
                     >
-                      <Feather name="eye-off" size={24} color="black" />
+                      <Feather name="eye" size={24} color="black" />
                     </TouchableOpacity>
                   ) : (
                     <TouchableOpacity
@@ -253,7 +255,7 @@ const Signup = () => {
                       }}
                       onPress={clearFunc}
                     >
-                      <Feather name="eye" size={24} color="black" />
+                      <Feather name="eye-off" size={24} color="black" />
                     </TouchableOpacity>
                   )}
                 </View>
