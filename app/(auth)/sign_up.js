@@ -4,6 +4,8 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import axios from "axios";
 import { Ionicons } from "@expo/vector-icons";
 import Feather from "@expo/vector-icons/Feather";
+import Constants from "expo-constants";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 import {
   View,
@@ -14,6 +16,7 @@ import {
   TouchableOpacity,
   ScrollView,
   ActivityIndicator,
+  Platform,
 } from "react-native";
 
 const Signup = () => {
@@ -38,7 +41,7 @@ const Signup = () => {
     setClearMdp(false);
   };
   const backToLogin = () => {
-    router.navigate("/index.js");
+    router.navigate("/");
   };
 
   const signFunc = async () => {
@@ -86,14 +89,14 @@ const Signup = () => {
 
   return (
     <>
-      <>
+      <SafeAreaView>
         <View
           style={{
             alignItems: "center",
             justifyContent: "center",
             flex: 1,
-            paddingBottom: 10,
-            paddingTop: 20,
+            paddingTop:
+              Platform.OS === "android" ? Constants.statusBarHeight : 0,
           }}
         >
           <ScrollView
@@ -352,7 +355,7 @@ const Signup = () => {
             </View>
           </ScrollView>
         </View>
-      </>
+      </SafeAreaView>
     </>
   );
 };
