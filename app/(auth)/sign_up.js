@@ -88,275 +88,270 @@ const Signup = () => {
   };
 
   return (
-    <>
-      <SafeAreaView>
-        <View
-          style={{
-            alignItems: "center",
-            justifyContent: "center",
-            flex: 1,
-            paddingTop:
-              Platform.OS === "android" ? Constants.statusBarHeight : 0,
-          }}
+    <SafeAreaView style={{ flex: 1 }}>
+      <View
+        style={{
+          alignItems: "center",
+          justifyContent: "center",
+          flex: 1,
+          paddingTop: Platform.OS === "android" ? Constants.statusBarHeight : 0,
+        }}
+      >
+        <ScrollView
+          persistentScrollbar={false}
+          showsVerticalScrollIndicator={false}
         >
-          <ScrollView
-            persistentScrollbar={false}
-            showsVerticalScrollIndicator={false}
+          <View
+            style={{
+              paddingBottom: 40,
+              paddingTop: 10,
+              alignItems: "center",
+            }}
           >
-            <View
+            <Image
+              source={require("./../../assets/pictures/Airbnb-logo.png")}
               style={{
-                paddingBottom: 40,
-                paddingTop: 10,
-                alignItems: "center",
+                height: 140,
+                width: 130,
+                marginBottom: 30,
               }}
+            />
+            <Text
+              style={{ fontSize: 30, fontWeight: "bold", color: "#717171" }}
             >
-              <Image
-                source={require("./../../assets/pictures/Airbnb-logo.png")}
+              Sign up
+            </Text>
+          </View>
+          <View
+            style={{
+              width: "100%",
+              paddingHorizontal: 10,
+            }}
+          >
+            <KeyboardAwareScrollView style={{ width: 340, overflow: "hidden" }}>
+              <TextInput
                 style={{
-                  height: 140,
-                  width: 130,
-                  marginBottom: 30,
+                  height: 40,
+                  borderBottomColor: "#FFBAC0",
+                  borderBottomWidth: 2,
+                  marginBottom: 34,
+                  fontSize: 18,
+                }}
+                placeholder="email"
+                keyboardType="email-address"
+                onChangeText={(item) => {
+                  setEmail(item.toLowerCase());
                 }}
               />
-              <Text
-                style={{ fontSize: 30, fontWeight: "bold", color: "#717171" }}
-              >
-                Sign up
-              </Text>
-            </View>
-            <View
-              style={{
-                width: "100%",
-                paddingHorizontal: 10,
-              }}
-            >
-              <KeyboardAwareScrollView
-                style={{ width: 340, overflow: "hidden" }}
-              >
-                <TextInput
-                  style={{
-                    height: 40,
-                    borderBottomColor: "#FFBAC0",
-                    borderBottomWidth: 2,
-                    marginBottom: 34,
-                    fontSize: 18,
-                  }}
-                  placeholder="email"
-                  keyboardType="email-address"
-                  onChangeText={(item) => {
-                    setEmail(item.toLowerCase());
-                  }}
-                />
-                <TextInput
-                  style={{
-                    height: 40,
-                    borderBottomColor: "#FFBAC0",
-                    borderBottomWidth: 2,
-                    marginBottom: 34,
-                    fontSize: 18,
-                  }}
-                  placeholder="username"
-                  onChangeText={(item) => {
-                    setUser(item);
-                  }}
-                />
-                <View
-                  style={{
-                    width: 340,
-                    height: 120,
-                    borderColor: "#FFBAC0",
-                    borderWidth: 2,
-                    padding: 10,
-                    marginBottom: 24,
-                  }}
-                >
-                  <TextInput
-                    style={{
-                      height: 100,
-                      fontSize: 18,
-                    }}
-                    placeholder="Describe yourself in a few words..."
-                    multiline={true}
-                    maxLength={300}
-                    onChangeText={(item) => {
-                      setDescribe(item);
-                    }}
-                  />
-                </View>
-                <View style={{ position: "relative" }}>
-                  <TextInput
-                    style={{
-                      height: 40,
-                      borderBottomColor: "#FFBAC0",
-                      borderBottomWidth: 2,
-                      marginBottom: 34,
-                      fontSize: 18,
-                      width: 340,
-                    }}
-                    secureTextEntry={clearMdp ? false : true}
-                    placeholder="password"
-                    onChangeText={(item) => {
-                      setPassword(item);
-                    }}
-                  />
-                  {clearMdp ? (
-                    <TouchableOpacity
-                      style={{
-                        position: "absolute",
-                        right: 10,
-                        bottom: 40,
-                      }}
-                      onPress={hideFunc}
-                    >
-                      <Feather name="eye" size={24} color="black" />
-                    </TouchableOpacity>
-                  ) : (
-                    <TouchableOpacity
-                      style={{
-                        position: "absolute",
-                        right: 10,
-                        bottom: 40,
-                      }}
-                      onPress={clearFunc}
-                    >
-                      <Feather name="eye-off" size={24} color="black" />
-                    </TouchableOpacity>
-                  )}
-                </View>
-                <View style={{ position: "relative" }}>
-                  <TextInput
-                    style={{
-                      height: 40,
-                      borderBottomColor: "#FFBAC0",
-                      borderBottomWidth: 2,
-                      marginBottom: 34,
-                      fontSize: 18,
-                    }}
-                    secureTextEntry={clearMdp ? false : true}
-                    placeholder="confirm password"
-                    onChangeText={(item) => {
-                      setConfirm(item);
-                    }}
-                  />
-                  {clearMdp ? (
-                    <TouchableOpacity
-                      style={{
-                        position: "absolute",
-                        right: 10,
-                        bottom: 40,
-                      }}
-                      onPress={hideFunc}
-                    >
-                      <Feather name="eye" size={24} color="black" />
-                    </TouchableOpacity>
-                  ) : (
-                    <TouchableOpacity
-                      style={{
-                        position: "absolute",
-                        right: 10,
-                        bottom: 40,
-                      }}
-                      onPress={clearFunc}
-                    >
-                      <Feather name="eye-off" size={24} color="black" />
-                    </TouchableOpacity>
-                  )}
-                </View>
-              </KeyboardAwareScrollView>
-            </View>
-            <TouchableOpacity onPress={signFunc}>
+              <TextInput
+                style={{
+                  height: 40,
+                  borderBottomColor: "#FFBAC0",
+                  borderBottomWidth: 2,
+                  marginBottom: 34,
+                  fontSize: 18,
+                }}
+                placeholder="username"
+                onChangeText={(item) => {
+                  setUser(item);
+                }}
+              />
               <View
                 style={{
-                  height: 70,
-                  width: 240,
-                  borderColor: "#EB5A62",
-                  borderWidth: 4,
-                  borderRadius: 40,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  alignSelf: "center",
-                  marginBottom: 20,
+                  width: 340,
+                  height: 120,
+                  borderColor: "#FFBAC0",
+                  borderWidth: 2,
+                  padding: 10,
+                  marginBottom: 24,
                 }}
               >
-                {loading ? (
-                  <ActivityIndicator />
-                ) : (
-                  <Text
+                <TextInput
+                  style={{
+                    height: 100,
+                    fontSize: 18,
+                  }}
+                  placeholder="Describe yourself in a few words..."
+                  multiline={true}
+                  maxLength={300}
+                  onChangeText={(item) => {
+                    setDescribe(item);
+                  }}
+                />
+              </View>
+              <View style={{ position: "relative" }}>
+                <TextInput
+                  style={{
+                    height: 40,
+                    borderBottomColor: "#FFBAC0",
+                    borderBottomWidth: 2,
+                    marginBottom: 34,
+                    fontSize: 18,
+                    width: 340,
+                  }}
+                  secureTextEntry={clearMdp ? false : true}
+                  placeholder="password"
+                  onChangeText={(item) => {
+                    setPassword(item);
+                  }}
+                />
+                {clearMdp ? (
+                  <TouchableOpacity
                     style={{
-                      fontSize: 24,
-                      color: "#717171",
-                      fontWeight: "bold",
+                      position: "absolute",
+                      right: 10,
+                      bottom: 40,
                     }}
+                    onPress={hideFunc}
                   >
-                    Sign up
-                  </Text>
+                    <Feather name="eye" size={24} color="black" />
+                  </TouchableOpacity>
+                ) : (
+                  <TouchableOpacity
+                    style={{
+                      position: "absolute",
+                      right: 10,
+                      bottom: 40,
+                    }}
+                    onPress={clearFunc}
+                  >
+                    <Feather name="eye-off" size={24} color="black" />
+                  </TouchableOpacity>
                 )}
               </View>
-            </TouchableOpacity>
-            {errorPassword && (
-              <View style={{ height: 20, width: "100%", alignItems: "center" }}>
-                <Text style={{ color: "red", fontSize: 14 }}>
-                  Warning : your passwords are different
-                </Text>
+              <View style={{ position: "relative" }}>
+                <TextInput
+                  style={{
+                    height: 40,
+                    borderBottomColor: "#FFBAC0",
+                    borderBottomWidth: 2,
+                    marginBottom: 34,
+                    fontSize: 18,
+                  }}
+                  secureTextEntry={clearMdp ? false : true}
+                  placeholder="confirm password"
+                  onChangeText={(item) => {
+                    setConfirm(item);
+                  }}
+                />
+                {clearMdp ? (
+                  <TouchableOpacity
+                    style={{
+                      position: "absolute",
+                      right: 10,
+                      bottom: 40,
+                    }}
+                    onPress={hideFunc}
+                  >
+                    <Feather name="eye" size={24} color="black" />
+                  </TouchableOpacity>
+                ) : (
+                  <TouchableOpacity
+                    style={{
+                      position: "absolute",
+                      right: 10,
+                      bottom: 40,
+                    }}
+                    onPress={clearFunc}
+                  >
+                    <Feather name="eye-off" size={24} color="black" />
+                  </TouchableOpacity>
+                )}
               </View>
-            )}
-            {errorEmpty && (
-              <View style={{ height: 20, width: "100%", alignItems: "center" }}>
-                <Text style={{ color: "red", fontSize: 14 }}>
-                  Warning : you must fill all fields
-                </Text>
-              </View>
-            )}
-            {conflictErrorMail && (
-              <View style={{ height: 20, width: "100%", alignItems: "center" }}>
-                <Text style={{ color: "red", fontSize: 14 }}>
-                  Warning : account already existing for this email
-                </Text>
-              </View>
-            )}
-            {conflictErrorUser && (
-              <View style={{ height: 20, width: "100%", alignItems: "center" }}>
-                <Text style={{ color: "red", fontSize: 14 }}>
-                  Warning : account already existing for this username
-                </Text>
-              </View>
-            )}
+            </KeyboardAwareScrollView>
+          </View>
+          <TouchableOpacity onPress={signFunc}>
             <View
               style={{
-                height: 40,
-                width: "100%",
-                flexDirection: "row",
-                alignItems: "center",
+                height: 70,
+                width: 240,
+                borderColor: "#EB5A62",
+                borderWidth: 4,
+                borderRadius: 40,
                 justifyContent: "center",
+                alignItems: "center",
+                alignSelf: "center",
+                marginBottom: 20,
               }}
             >
+              {loading ? (
+                <ActivityIndicator />
+              ) : (
+                <Text
+                  style={{
+                    fontSize: 24,
+                    color: "#717171",
+                    fontWeight: "bold",
+                  }}
+                >
+                  Sign up
+                </Text>
+              )}
+            </View>
+          </TouchableOpacity>
+          {errorPassword && (
+            <View style={{ height: 20, width: "100%", alignItems: "center" }}>
+              <Text style={{ color: "red", fontSize: 14 }}>
+                Warning : your passwords are different
+              </Text>
+            </View>
+          )}
+          {errorEmpty && (
+            <View style={{ height: 20, width: "100%", alignItems: "center" }}>
+              <Text style={{ color: "red", fontSize: 14 }}>
+                Warning : you must fill all fields
+              </Text>
+            </View>
+          )}
+          {conflictErrorMail && (
+            <View style={{ height: 20, width: "100%", alignItems: "center" }}>
+              <Text style={{ color: "red", fontSize: 14 }}>
+                Warning : account already existing for this email
+              </Text>
+            </View>
+          )}
+          {conflictErrorUser && (
+            <View style={{ height: 20, width: "100%", alignItems: "center" }}>
+              <Text style={{ color: "red", fontSize: 14 }}>
+                Warning : account already existing for this username
+              </Text>
+            </View>
+          )}
+          <View
+            style={{
+              height: 40,
+              width: "100%",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Text
+              style={{
+                fontSize: 18,
+                color: "#717171",
+                textAlign: "center",
+                marginRight: 10,
+              }}
+            >
+              Already have an account?
+            </Text>
+            <TouchableOpacity onPress={backToLogin}>
               <Text
                 style={{
                   fontSize: 18,
                   color: "#717171",
                   textAlign: "center",
-                  marginRight: 10,
+                  fontWeight: "bold",
                 }}
               >
-                Already have an account?
+                Log in
               </Text>
-              <TouchableOpacity onPress={backToLogin}>
-                <Text
-                  style={{
-                    fontSize: 18,
-                    color: "#717171",
-                    textAlign: "center",
-                    fontWeight: "bold",
-                  }}
-                >
-                  Log in
-                </Text>
-              </TouchableOpacity>
-            </View>
-          </ScrollView>
-        </View>
-      </SafeAreaView>
-    </>
+            </TouchableOpacity>
+          </View>
+        </ScrollView>
+      </View>
+    </SafeAreaView>
   );
 };
 
